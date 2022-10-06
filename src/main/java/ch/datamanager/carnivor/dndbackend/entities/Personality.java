@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class StoryCharacter extends BaseEntity{
+public class Personality{
 
     @Id
     @GeneratedValue
@@ -18,4 +18,7 @@ public class StoryCharacter extends BaseEntity{
 
     @ManyToOne
     private Creature race;
+
+    @ManyToOne
+    private Story story;
 }

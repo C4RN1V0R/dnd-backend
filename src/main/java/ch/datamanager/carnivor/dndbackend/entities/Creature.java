@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class Creature extends BaseEntity {
+public class Creature{
 
     @Id
     @GeneratedValue

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class World extends BaseEntity{
+public class World{
 
     @Id
     @GeneratedValue

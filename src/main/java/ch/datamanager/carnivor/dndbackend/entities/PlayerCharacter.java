@@ -7,15 +7,15 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class PlayerCharacter extends BaseEntity{
+public class PlayerCharacter{
 
     @Id
     @GeneratedValue
     private UUID id;
 
     @ManyToOne
-    private Membership membership;
+    private User user;
 
     @OneToOne
-    private StoryCharacter character;
+    private Personality personality;
 }
