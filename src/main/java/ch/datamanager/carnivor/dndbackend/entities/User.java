@@ -2,10 +2,7 @@ package ch.datamanager.carnivor.dndbackend.entities;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +14,8 @@ public class User {
     @GeneratedValue
     private UUID id;
 
-    private String name;
+    @Column(nullable = false, unique = true)
+    private String username;
 
     private String passwd;
 }
