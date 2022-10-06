@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class Membership extends BaseEntity {
+public class Membership{
 
     @Id
     @GeneratedValue

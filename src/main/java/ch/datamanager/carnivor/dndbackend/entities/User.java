@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class User extends BaseEntity {
+public class User {
 
     @Id
     @GeneratedValue
