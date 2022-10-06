@@ -14,7 +14,7 @@ public class World extends BaseEntity{
     private UUID id;
 
     private String name;
-    
-    @ManyToOne()
+
+    @ManyToOne
     private User creator;
 }

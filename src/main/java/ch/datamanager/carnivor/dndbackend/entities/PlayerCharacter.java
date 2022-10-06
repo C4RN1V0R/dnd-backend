@@ -17,5 +17,5 @@ public class PlayerCharacter extends BaseEntity{
     private Membership membership;
 
     @OneToOne
-    private Character character;
+    private StoryCharacter character;
 }

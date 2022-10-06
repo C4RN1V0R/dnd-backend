@@ -20,8 +20,5 @@ public class Story extends BaseEntity{
     @ManyToOne
     private World world;
 
-    @OneToMany
-    private List<Membership> membershipList;
-
     private String name;
 }

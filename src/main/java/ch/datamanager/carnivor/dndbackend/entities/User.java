@@ -20,13 +20,4 @@ public class User extends BaseEntity {
     private String name;
 
     private String passwd;
-
-    @OneToMany
-    private List<Membership> membershipList;
-
-    @OneToMany
-    private List<Story> createdStories;
-
-    @OneToMany
-    private List<World> createdWorlds;
 }

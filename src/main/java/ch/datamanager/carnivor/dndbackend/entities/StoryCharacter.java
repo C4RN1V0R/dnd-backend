@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class Character extends BaseEntity{
+public class StoryCharacter extends BaseEntity{
 
     @Id
     @GeneratedValue

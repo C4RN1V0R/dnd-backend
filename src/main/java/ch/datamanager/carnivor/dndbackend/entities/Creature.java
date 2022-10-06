@@ -18,7 +18,4 @@ public class Creature extends BaseEntity {
     private UUID id;
 
     private String name;
-
-    @OneToMany
-    private List<Character> characters;
 }
