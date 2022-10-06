@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class Story extends BaseEntity{
+public class Story{
 
     @Id
     @GeneratedValue
