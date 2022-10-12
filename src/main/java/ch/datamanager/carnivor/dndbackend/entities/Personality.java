@@ -1,6 +1,7 @@
 package ch.datamanager.carnivor.dndbackend.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ public class Personality{
 
     @Id
     @GeneratedValue
+    @Type(type="uuid-char")
     private UUID id;
 
     @ManyToOne
