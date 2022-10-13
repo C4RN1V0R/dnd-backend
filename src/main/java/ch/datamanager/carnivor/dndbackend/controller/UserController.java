@@ -35,8 +35,8 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+    public List<UserDTO> findAllUsers() {
+        return UserDTO.build(userRepository.findAll());
     }
 
     @GetMapping("/mydata")
@@ -45,10 +45,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<UserDTO> findUserById(@PathVariable(value = "id") UUID id) {
         Optional<User> user = userRepository.findById(id);
         if(user.isPresent()) {
-            return ResponseEntity.ok().body(user.get());
+            UserDTO dto = UserDTO.build(user.get());
+            return ResponseEntity.ok().body(dto);
         } else {
             return ResponseEntity.notFound().build();
         }
