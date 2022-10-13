@@ -1,6 +1,7 @@
 package ch.datamanager.carnivor.dndbackend.controller;
 
 import ch.datamanager.carnivor.dndbackend.entities.User;
+import ch.datamanager.carnivor.dndbackend.entities.UserDTO;
 import ch.datamanager.carnivor.dndbackend.entities.UserRepository;
 import ch.datamanager.carnivor.dndbackend.security.MyUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class UserController {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
+    private User getSessionUser(){
+        MyUserPrincipal principal = (MyUserPrincipal) authentication().getPrincipal();
+        return principal.getUser();
+    }
+
 
     @Autowired
     private UserRepository userRepository;
@@ -34,10 +40,8 @@ public class UserController {
     }
 
     @GetMapping("/mydata")
-    public User getSessionUser(){
-        MyUserPrincipal principal = (MyUserPrincipal) authentication().getPrincipal();
-        User user = principal.getUser();
-        return user;
+    public UserDTO getSessionUserData(){
+        return UserDTO.build(getSessionUser());
     }
 
     @GetMapping("/{id}")
