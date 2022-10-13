@@ -26,6 +26,10 @@ public class DataLoader implements ApplicationRunner {
             User.builder()
                     .username("none")
                     .passwd("")
+                    .build(),
+            User.builder()
+                    .username("user1")
+                    .passwd("pass1")
                     .build()
     });
 
