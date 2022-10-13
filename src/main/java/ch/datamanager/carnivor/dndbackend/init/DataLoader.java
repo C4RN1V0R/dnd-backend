@@ -22,10 +22,17 @@ public class DataLoader implements ApplicationRunner {
             User.builder()
                     .username("admin")
                     .passwd("nimda")
+                    .mail("admin@dndnav.com")
                     .build(),
             User.builder()
                     .username("none")
                     .passwd("")
+                    .mail("none@dndnav.com")
+                    .build(),
+            User.builder()
+                    .username("user1")
+                    .passwd("pass1")
+                    .mail("user1@dndnav.com")
                     .build()
     });
 
