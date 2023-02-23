@@ -2,41 +2,46 @@ package ch.datamanager.carnivor.dndbackend.init;
 
 import ch.datamanager.carnivor.dndbackend.entities.User;
 import ch.datamanager.carnivor.dndbackend.entities.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-
 @Component
-public class DataLoader implements ApplicationRunner {
+@RequiredArgsConstructor
+public class DataLoader {
 
-    private UserRepository userRepository;
+  private final UserRepository userRepository;
+  private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public DataLoader(UserRepository userRepository) {
-        this.userRepository = userRepository;
+  @EventListener(ApplicationReadyEvent.class)
+  public void setup() {
+    if (userRepository.count() != 0) {
+      // database already initialized -- skip
+      return;
     }
-    private Iterable<User> users = Arrays.asList(new User[]{
-            User.builder()
-                    .username("admin")
-                    .passwd("nimda")
-                    .mail("admin@dndnav.com")
-                    .build(),
-            User.builder()
-                    .username("none")
-                    .passwd("")
-                    .mail("none@dndnav.com")
-                    .build(),
-            User.builder()
-                    .username("user1")
-                    .passwd("pass1")
-                    .mail("user1@dndnav.com")
-                    .build()
-    });
 
-    public void run(ApplicationArguments args) {
-        userRepository.saveAll(users);
-    }
+    var users = List.of(
+        User.builder()
+            .username("admin")
+            .passwd(passwordEncoder.encode("nimda"))
+            .mail("admin@dndnav.com")
+            .build(),
+        User.builder()
+            .username("none")
+            .passwd(passwordEncoder.encode(""))
+            .mail("none@dndnav.com")
+            .build(),
+        User.builder()
+            .username("user1")
+            .passwd(passwordEncoder.encode("pass1"))
+            .mail("user1@dndnav.com")
+            .build()
+    );
+
+    userRepository.saveAll(users);
+  }
+
 }
